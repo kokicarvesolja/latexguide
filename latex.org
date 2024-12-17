@@ -1,0 +1,105 @@
+#+title: Latex
+#+startup: entitiespretty nil
+
+* Uvod
+
+Kot fiziki(in fizičarke) je LaTeX najbližje včasih, kar pridemo do kondomov. Ampak dajmo najprej razčistiti, da ni [lat-eks], ampak [la-teh]/[lej-teh].
+
+Torej, kaj je to? Uradni odgovor je postopek, ki nam pomaga pripraviti dokumente for 'high-quality typesetting' (source: [[https://www.latex-project.org/about/]]).
+
+Kaj pa je v resnici? Jaz laikom LaTeX opišem kot (Microsoft) Word na stereoidih.
+
+Vendar tako kot pri stereoidih, rabi človek tudi tukaj nekaj časa posvetiti, da se vidijo rezultati. Upam, da bo ta vodnik pomagal pri vaših začetkih.
+
+Imaš na voljo samo tl;dr verzijo, kjer si lahko shraniš mojo predlogo in začneš tipkati. Za tiste, ki se jim tako ne mudi, bom pokril, kako so dokumenti sestavljeni, kaj naredi posamezen paket in zakaj je tam, good and bad practices, ki sem se jih naučil tekom pisanja svojih poročil in resourci, kje lahko nadaljujete svoje raziskovanje.
+** Alternative
+
+Zmeraj lahko ostanete na Wordu! S tem sicer ni nič narobe, vendar bi raje pustil plačevanje licenc za Office 365 in hecanje z vstavljanjem slik FDVjevcem. Mi, fiziki in fizičarke ne gate-keepamo knowledge in podpiramo open-source projekte, ki so ponavadi tudi brezplačni (še vedno lahko projekte podprete denarno ali kako drugače). There is no black box, kako deluje. Če dela, dela zaradi nas in če ne dela, smo prav tako mi krivi.
+
+Zadnje čase precej na popularnosti pridobiva human-friendly verzija LaTeX-a imenovana [[https://typst.app/][Typst]], ki je napisana v rustu (programerski jezik). Dela precej dobro in ima bolj logično sintakso kakor LaTeX.
+
+Sam sem že praktično v kultu LaTeX-a in prav tako major scientific journals ne sprejemamo typstov datotek, ampak samo .tex. But it is an option for a personal use.
+* Predloga za LaTeX
+
+Za neučakane, tukaj je moja [[file:predloge/Predloga.tex][predloga]].Poleg same predloge si je
+potrebno shraniti tudi sliko [[file:predloge/fmf_logo.png][FMF logota]]. Slika naj se v primeru ustvarjanja
+datotek skozi terminal nahaja na istem nivoju (v istem direktoriju/folderju/
+imeniku) kakor sama predloga.
+
+Writing section se začne po ~\begin{document}~. Po ~\end{document}~ se ne piše
+več.
+
+Na voljo je malo morje predlog, ker si jo vsak posameznik ustvari zase in jo
+potem po svojih potrebah prilagaja.
+
+Na voljo imate še predlogo od Markota Urbanča na njegovem [[https://github.com/pengu5055/latex-template][GitHub repositoryju]].
+
+*Disclaimer*
+
+Uporaba teh predlog brez razumevanja what it does, and why it does it like
+that, je na vašo odgovornost - po domače, preberite si ta guide ali pa
+kakšne druge vire.
+* LaTeX - inside and out
+
+Poglejmo si sliko izseka datoteke, ki je napisana v LaTeX-u.
+
+* TODO dodaj izsek datoteke
+
+It looks scary, doesn't it? Na daleč mogoče res, ampak ko pogledaš bližje, vidiš, da so po večini samo besede, kakor jih sedaj bereš ter nekaj ukazov, ki jih posipaš po vrhu, da dokumenti dobijo t.i. pridih LaTeXa.
+
+Preden nadaljujem bi rad povedal, dve stvari:
+1) zelo priročna je kratica RTFM - *read the fucking manual* in
+2) internet je vaš prijatelj! Če vam kaj ne gre, google it.
+
+** Preamble
+
+(Skoraj) vsaka dobro napisana stvar se začne s predgovorom in tudi ta se. Angleško se ji reče /preamble/ in v njem so vse informacije o tem, kako bo tekst izgledal. Za razliko od WYSIWYG (What You Is What You Get) text editorjev, tukaj ne vidiš, kakšen bo končen rezultat, dokler, v našem primeru, OverLeaf ne zgenerira dokumenta.
+
+Quick rundown of important symbols:
+
+- \ (backslash, na slovenski tipkovnici je vezan na AltGr + Q), tako se začnejo vsi LaTeX ukazi. Dvojni backslash (\\) gre tekst zapisovati v novo vrstico
+- % (percentage, Shift + 5), s katerim dodajaš komentarje, ki se pri generaciji dokumenta ignorirajo. Komentar traja do konca vrstice.
+- $ ali \( začneta matematično okolje (drugi dollar sign oz. zaklepaj konča matematično okolje)
+
+Če želiš uporabiti katerega koli izmed posebnih simbolov, to v LaTeX dokumentu narediš tako, da pred simbol postaviš backslash
+
+#+begin_src latex
+\%
+#+end_src
+
+Edina izjema je backslash, ki ga dosežeš z ukazom ~\textbackslash~.
+
+Tako v glavnem delu .tex dokumenta, kot v preamblu se začetek TeX ukaza začne z \ (backslash). Ukaz je potem sestavljen iz črk in lahko sprejme tudi parametre. Npr. ukaz za ulomek
+
+#+begin_src latex
+\frac{a}{b}
+#+end_src
+
+sprejme 2 parametra, prvi je tisto, kar gre v števec in drugi tisto, kar gre v imenovalec.
+
+Če ima kakšen ukaz izbirni parameter, kakor recimo koren s tri, se ga skrije v oglate oklepaje po ukazu in pred parametri. Npr.
+
+#+begin_src latex
+\sqrt[3]{a^2 + b^2}
+#+end_src
+*** Struktura dokumenta
+LaTeX mora vedeti, kakšen dokument mora narediti, saj drugače vse to, kar delamo nima smisla!
+
+Vrsto dokumenta specifiramo s čisto prvim ukazom v dokumentu, in to je
+
+#+begin_src latex
+\usepackage{article}
+#+end_src
+
+Funkcija ~\usepackage~ sprejme 1 parameter in sicer za nas fizike bosta pomembna dva:
+
+- article in
+- report
+
+* TODO Visual Studio Code snippets (try and write about it)
+* TODO Overleaf
+* TODO Debugging?
+* TODO Long documents
+* TODO Bib(la)tex?
+** TODO Zotero
+* TODO Resourci (Overleaf pages, RTFM)
